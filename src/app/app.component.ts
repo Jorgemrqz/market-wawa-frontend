@@ -3,11 +3,12 @@ import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { BarraAdministradorComponent } from './components/barra-administrador/barra-administrador.component';
 import { CommonModule } from '@angular/common';
+import { BarraCajeroComponent } from './components/barra-cajero/barra-cajero.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BarraAdministradorComponent, CommonModule],
+  imports: [RouterOutlet, BarraAdministradorComponent, CommonModule, BarraCajeroComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
