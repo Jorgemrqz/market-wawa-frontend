@@ -26,6 +26,11 @@ export class AppComponent {
 
   ngOnInit() {
     this.checkUserStatus();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkUserStatus();
+      }
+    });
   }
 
   checkUserStatus() {

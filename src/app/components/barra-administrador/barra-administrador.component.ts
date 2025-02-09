@@ -11,8 +11,12 @@ import { Router } from '@angular/router';
 export class BarraAdministradorComponent {
   constructor(private router: Router) {}
 
+  navigateTo(path: string) {
+    this.router.navigate([path]);
+  }
+
   logout() {
-    localStorage.removeItem('usuario'); // Elimina la sesión
-    this.router.navigate(['/login']); // Redirige al login
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
   }
 }
