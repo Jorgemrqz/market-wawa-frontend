@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   nombre_usuario: string = "";
@@ -21,19 +21,24 @@ export class LoginComponent {
       alert("Por favor, completa todos los campos");
       return;
     }
-  
+
     this.auth.login(this.nombre_usuario, this.contrasenia)
       .subscribe({
         next: (response) => {
           console.log("Login exitoso:", response);
-  
+
+          // Verificamos que la respuesta tenga nombre_usuario antes de proceder
           if (response && response.nombre_usuario) {
             console.log("Usuario autenticado:", response.nombre_usuario);
-            
+
+            // Guardar los datos del usuario en localStorage
+            localStorage.setItem('usuario', JSON.stringify(response));
+
+            // Redirigir según el rol
             if (response.rol === "administrador") {
               this.router.navigate(['/proveedor']);
             } else if (response.rol === "cajero") {
-              this.router.navigate(['/login']); // Ruta por defecto
+              this.router.navigate(['/']);  // Ruta por defecto para cajero
             } else {
               console.log("Rol desconocido, manteniendo en la misma página.");
             }
@@ -45,5 +50,5 @@ export class LoginComponent {
           console.error("Error de login:", error);
         },
       });
-    }
-  }  
+  }
+}

@@ -1,0 +1,29 @@
+.navbar {
+    background: #4A90E2;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+  
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+  
+      li {
+        a, button {
+          color: white;
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: bold;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+  
+        button:hover, a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
