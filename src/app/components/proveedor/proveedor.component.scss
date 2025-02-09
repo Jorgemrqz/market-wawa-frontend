@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif; /* Fuente Poppins para todo el proyecto */
+}
+
+/* Contenedor principal con fondo azul */
+.page-container {
+  background: linear-gradient(to bottom, #6190e8, #a7bfe8);
+  padding: 40px 0;
+  min-height: 100vh;
+}
+
+/* Contenedor para el formulario y la lista de proveedores */
+.proveedor-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white; /* Fondo blanco para el formulario */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Estilo para el encabezado */
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Estilo para el formulario */
+.form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Estilo para los grupos de entradas */
+.input-group {
+  margin-bottom: 15px;
+}
+
+/* Estilo para las etiquetas de los campos */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Estilo para el botón de enviar */
+.submit-button {
+  background-color: #4CAF50; /* Color verde */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para la lista de proveedores */
+.proveedor-list {
+  margin-top: 30px;
+}
+
+/* Estilo para la tabla de proveedores */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* Estilo para los botones dentro de la tabla */
+button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #2196F3;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px; /* Agrega espacio entre los botones */
+}
+
+button:hover {
+  background-color: #0b7dda;
+}
+
+/* Estilo específico para los botones de eliminar */
+button:nth-child(2) {
+  background-color: #f44336; /* Rojo para el botón de eliminar */
+}
+
+button:nth-child(2):hover {
+  background-color: #e53935;
+}

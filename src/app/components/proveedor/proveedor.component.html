@@ -1,0 +1,66 @@
+<div class="page-container">
+    <div class="proveedor-container">
+      <h1>Proveedores</h1>
+  
+      <!-- Formulario de agregar proveedor -->
+      <div class="form-container">
+        <form (ngSubmit)="onSubmit()" #proveedorForm="ngForm">
+          <div class="input-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="proveedor.nombre" required />
+          </div>
+  
+          <div class="input-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" name="direccion" [(ngModel)]="proveedor.direccion" required />
+          </div>
+  
+          <div class="input-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" name="telefono" [(ngModel)]="proveedor.telefono" required />
+          </div>
+  
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" [(ngModel)]="proveedor.email" required />
+          </div>
+  
+          <button type="submit" class="submit-button">Guardar Proveedor</button>
+        </form>
+      </div>
+  
+      <!-- Mostrar la lista de proveedores -->
+      <div class="proveedor-list">
+        <h2>Lista de Proveedores</h2>
+  
+        <div *ngIf="proveedores.length === 0">
+          <p>No hay proveedores disponibles.</p>
+        </div>
+  
+        <table *ngIf="proveedores.length > 0">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
+              <th>Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let proveedor of proveedores">
+              <td>{{ proveedor.nombre }}</td>
+              <td>{{ proveedor.direccion }}</td>
+              <td>{{ proveedor.telefono }}</td>
+              <td>{{ proveedor.email }}</td>
+              <td>
+                <button (click)="editProveedor(proveedor)">Editar</button>
+                <button (click)="deleteProveedor(proveedor.id_proveedor)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
