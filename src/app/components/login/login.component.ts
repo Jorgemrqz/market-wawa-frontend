@@ -38,7 +38,7 @@ export class LoginComponent {
             if (response.rol === "administrador") {
               this.router.navigate(['/proveedor']);
             } else if (response.rol === "cajero") {
-              this.router.navigate(['/']);  // Ruta por defecto para cajero
+              this.router.navigate(['/factura']);  // Ruta por defecto para cajero
             } else {
               console.log("Rol desconocido, manteniendo en la misma página.");
             }
