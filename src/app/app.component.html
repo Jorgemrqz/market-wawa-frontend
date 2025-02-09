@@ -1,5 +1,2 @@
-<app-barra-administrador *ngIf="usuario && usuario.rol === 'administrador'">
-    <!-- Barra de administración solo si el usuario es administrador -->
-</app-barra-administrador>
-
+<app-barra-administrador *ngIf="isLoggedIn && usuario?.rol === 'administrador'"></app-barra-administrador>
 <router-outlet></router-outlet>

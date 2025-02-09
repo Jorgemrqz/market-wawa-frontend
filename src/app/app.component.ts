@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { BarraAdministradorComponent } from './components/barra-administrador/barra-administrador.component';
 import { CommonModule } from '@angular/common';
@@ -12,12 +13,28 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'market-wawa-frontend';
-  usuario: any = null;  // Asegúrate de que el objeto usuario esté bien inicializado.
+  usuario: any = null;
+  isLoggedIn: boolean = false; 
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkUserStatus(); // 🔥 Forzar recarga del usuario después de navegar
+      }
+    });
+  }
 
   ngOnInit() {
+    this.checkUserStatus();
+  }
+
+  checkUserStatus() {
     const userData = localStorage.getItem('usuario');
     if (userData) {
-      this.usuario = JSON.parse(userData);  // Parseamos los datos del usuario
+      this.usuario = JSON.parse(userData);
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
     }
   }
 }
