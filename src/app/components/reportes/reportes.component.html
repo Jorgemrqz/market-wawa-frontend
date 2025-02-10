@@ -1,0 +1,47 @@
+<div class="reportes-container">
+  <div class="selector">
+    <label for="periodo">Seleccione el período:</label>
+    <select [(ngModel)]="periodoSeleccionado" (change)="obtenerReportes()">
+      <option *ngFor="let periodo of periodos" [value]="periodo">{{ periodo }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="cargando" class="loading">Cargando...</div>
+
+  <div *ngIf="!cargando" class="reportes-cards">
+    <div class="card">
+      <h3>Ventas</h3>
+      <ul>
+        <li *ngFor="let reporte of reportesVentas">{{ reporte | json }}</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Ingresos</h3>
+      <ul>
+        <li *ngFor="let reporte of reportesIngresos">{{ reporte | json }}</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Productos Más Vendidos</h3>
+      <ul>
+        <li *ngFor="let producto of productosMasVendidos">{{ producto | json }}</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Stock de Productos</h3>
+      <ul>
+        <li *ngFor="let stock of stockProductos">{{ stock | json }}</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Compras a Proveedores</h3>
+      <ul>
+        <li *ngFor="let compra of comprasProveedores">{{ compra | json }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

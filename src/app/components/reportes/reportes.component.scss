@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif; // Fuente Poppins para todo el proyecto
+}
+
+/* Contenedor principal con fondo degradado */
+.reportes-container {
+  background: linear-gradient(to bottom, #6190e8, #a7bfe8);
+  padding: 40px 0;
+  min-height: 100vh;
+}
+
+.selector {
+  margin-bottom: 20px;
+  label {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+  }
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #333;
+  }
+}
+
+.loading {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Estilos de las tarjetas de reportes */
+.reportes-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+h3 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #333;
+}
+
+strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Estilos adicionales */
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #2196F3;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #0b7dda;
+}
+
+button:nth-child(2) {
+  background-color: #f44336;
+}
+
+button:nth-child(2):hover {
+  background-color: #e53935;
+}
