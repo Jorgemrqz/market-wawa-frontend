@@ -42,45 +42,45 @@
       </div>
     </form>
   </div>
-</div>
 
-<div class="form-container">
-  <h1>Gestión de Factura</h1>
+  <!-- Sección de Factura - Ahora debajo del formulario de Cliente -->
+  <div class="form-container">
+    <h1>Gestión de Factura</h1>
 
-  <form [formGroup]="facturaForm">
+    <form [formGroup]="facturaForm">
+      <div class="input-group">
+        <label>Productos:</label>
+        <select formControlName="productoSeleccionado" (change)="seleccionarProducto()">
+          <option *ngFor="let producto of productos" [value]="producto.id_producto">
+            {{ producto.nombre }} - ${{ producto.precio }}
+          </option>
+        </select>
+        <input type="number" formControlName="cantidad" placeholder="Cantidad" min="1" />
+        <button type="button" (click)="agregarProducto()">Agregar</button>
+      </div>    
 
-    <div class="input-group">
-      <label>Productos:</label>
-      <select formControlName="productoSeleccionado" (change)="seleccionarProducto()">
-        <option *ngFor="let producto of productos" [value]="producto.id_producto">
-          {{ producto.nombre }} - ${{ producto.precio }}
-        </option>
-      </select>
-      <input type="number" formControlName="cantidad" placeholder="Cantidad" min="1" />
-      <button type="button" (click)="agregarProducto()">Agregar</button>
-    </div>    
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detalle of detallesFactura">
+            <td>{{ detalle.nombre }}</td>
+            <td>{{ detalle.cantidad }}</td>
+            <td>${{ detalle.precio_unitario }}</td>
+            <td>${{ detalle.subtotal }}</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let detalle of detallesFactura">
-          <td>{{ detalle.nombre }}</td>
-          <td>{{ detalle.cantidad }}</td>
-          <td>${{ detalle.precio_unitario }}</td>
-          <td>${{ detalle.subtotal }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <h3>Total: ${{ totalFactura }}</h3>
 
-    <h3>Total: ${{ totalFactura }}</h3>
-
-    <button type="button" (click)="crearFactura()">Crear Factura</button>
-  </form>
+      <button type="button" (click)="crearFactura()">Crear Factura</button>
+    </form>
+  </div>
 </div>
