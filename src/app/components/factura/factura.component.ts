@@ -63,12 +63,13 @@ export class FacturaComponent {
       this.mensaje = 'Por favor, ingrese una cédula válida.';
       return;
     }
-
+  
     this.buscando = true;
     this.mensaje = 'Buscando cliente...';
-
+  
     this.http.get(`http://localhost:3000/api/clientes/cedula/${cedula}`).subscribe(
       (cliente: any) => {
+        console.log('Cliente encontrado:', cliente);  // Verifica la respuesta del servidor
         this.buscando = false;
         this.clienteExiste = true;
         this.mensaje = 'Cliente encontrado ✅';
@@ -81,7 +82,7 @@ export class FacturaComponent {
         this.clienteForm.reset({ cedula });
       }
     );
-  }
+  }  
 
   registrarCliente() {
     if (this.clienteForm.valid) {
@@ -187,17 +188,21 @@ export class FacturaComponent {
   }  
 
   crearFactura() {
-    if (!this.clienteForm.get('id_cliente')?.value || this.detallesFactura.length === 0) {
+    const idCliente = this.clienteForm.get('id_cliente')?.value;
+    console.log('id_cliente:', idCliente);  // Verifica si el id_cliente tiene un valor
+  
+    if (!idCliente || this.detallesFactura.length === 0) {
       alert('Debe seleccionar un cliente y agregar productos.');
+      console.log('Detalles de la factura:', this.detallesFactura);  // Verifica si los productos están en detallesFactura
       return;
     }
-
+  
     const facturaData = {
-      id_cliente: this.clienteForm.get('id_cliente')?.value,
+      id_cliente: idCliente,
       id_usuario: 1, // ID de usuario
       total: this.totalFactura
     };
-
+  
     this.http.post('http://localhost:3000/api/facturas', facturaData).subscribe(
       (factura: any) => {
         this.idFactura = factura.id_factura;
@@ -205,8 +210,8 @@ export class FacturaComponent {
       },
       () => alert('Error al crear la factura')
     );
-  }
-
+  }  
+  
   guardarDetallesFactura() {
     if (!this.idFactura) return;
 
