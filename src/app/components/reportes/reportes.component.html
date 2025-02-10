@@ -12,35 +12,50 @@
     <div class="card">
       <h3>Ventas</h3>
       <ul>
-        <li *ngFor="let reporte of reportesVentas">{{ reporte | json }}</li>
+        <li *ngFor="let reporte of reportesVentas">
+          <strong>Periodo:</strong> {{ reporte.periodo | date: 'dd/MM/yyyy' }} <br>
+          <strong>Total Ventas:</strong> {{ reporte.total_ventas | currency: 'USD' }}
+        </li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Ingresos</h3>
       <ul>
-        <li *ngFor="let reporte of reportesIngresos">{{ reporte | json }}</li>
+        <li *ngFor="let reporte of reportesIngresos">
+          <strong>Periodo:</strong> {{ reporte.periodo | date: 'dd/MM/yyyy' }} <br>
+          <strong>Ingresos Totales:</strong> {{ reporte.ingresos_totales | currency: 'USD' }}
+        </li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Productos Más Vendidos</h3>
       <ul>
-        <li *ngFor="let producto of productosMasVendidos">{{ producto | json }}</li>
+        <li *ngFor="let producto of productosMasVendidos">
+          <strong>Nombre:</strong> {{ producto.nombre }} <br>
+          <strong>Total Vendido:</strong> {{ producto.total_vendido }}
+        </li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Stock de Productos</h3>
       <ul>
-        <li *ngFor="let stock of stockProductos">{{ stock | json }}</li>
+        <li *ngFor="let stock of stockProductos">
+          <strong>Nombre:</strong> {{ stock.nombre }} <br>
+          <strong>Stock Disponible:</strong> {{ stock.stock }}
+        </li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Compras a Proveedores</h3>
       <ul>
-        <li *ngFor="let compra of comprasProveedores">{{ compra | json }}</li>
+        <li *ngFor="let compra of comprasProveedores">
+          <strong>Proveedor:</strong> {{ compra.proveedor }} <br>
+          <strong>Total Compras:</strong> {{ compra.total_compras | currency: 'USD' }}
+        </li>
       </ul>
     </div>
   </div>

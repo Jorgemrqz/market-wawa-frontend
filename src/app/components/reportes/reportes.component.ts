@@ -29,10 +29,12 @@ export class ReportesComponent {
   obtenerReportes(): void {
     this.cargando = true;
 
-    // Solicitar los reportes según el periodo seleccionado
     this.reportesService.obtenerVentasPorPeriodo(this.periodoSeleccionado).subscribe(
       data => {
-        this.reportesVentas = data;
+        this.reportesVentas = data.map((item:any) => ({
+          periodo: new Date(item.periodo).toLocaleDateString(),
+          total_ventas: parseFloat(item.total_ventas).toFixed(2)
+        }));
         this.cargando = false;
       },
       error => {
@@ -40,11 +42,12 @@ export class ReportesComponent {
         this.cargando = false;
       }
     );
+    
 
-    this.reportesService.obtenerIngresosPorPeriodo(this.periodoSeleccionado).subscribe(
-      data => { this.reportesIngresos = data; },
-      error => { console.error('Error al obtener ingresos:', error); }
-    );
+      this.reportesService.obtenerIngresosPorPeriodo(this.periodoSeleccionado).subscribe(
+        data => { this.reportesIngresos = data; },
+        error => { console.error('Error al obtener ingresos:', error); }
+      );
 
     this.reportesService.obtenerProductosMasVendidos().subscribe(
       data => { this.productosMasVendidos = data; },
