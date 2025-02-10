@@ -1,23 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
+/* Fuente para todo el proyecto */
 :host {
-  font-family: 'Poppins', sans-serif; // Fuente Poppins para todo el proyecto
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Contenedor principal con fondo azul */
+/* Contenedor principal con fondo azul y un gradiente */
 .page-container {
   background: linear-gradient(to bottom, #6190e8, #a7bfe8);
   padding: 40px 0;
   min-height: 100vh;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
 }
 
 /* Contenedor para el formulario */
 .form-container {
   max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
   background-color: white; /* Fondo blanco para el formulario */
   border-radius: 8px;
   padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
 }
 
 /* Estilo para el encabezado */
@@ -25,6 +30,7 @@ h1 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
+  font-size: 24px; /* Tamaño de fuente mayor */
 }
 
 /* Estilo para los grupos de entradas */
@@ -33,25 +39,27 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px; /* 🔹 Añade espacio entre elementos */
+  gap: 10px; /* Añade espacio entre elementos */
 }
 
 /* Estilo para las etiquetas de los campos */
 label {
   font-weight: bold;
   margin-bottom: 5px;
-  margin-right: 10px; /* 🔹 Añade separación con el campo */
+  margin-right: 10px; /* Separación con el campo */
+  flex-basis: 25%; /* Se asegura que las etiquetas no ocupen más espacio del necesario */
 }
 
 /* Estilo para los campos de entrada */
 input[type="text"],
 input[type="email"],
-input[type="number"] {
-  width: 70%;
+input[type="number"],
+select {
+  width: 70%; /* Ocupa el 70% del contenedor */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
 }
 
 /* Estilo para los botones */
@@ -62,6 +70,7 @@ button {
   cursor: pointer;
   font-weight: bold;
   margin-left: 10px;
+  transition: background-color 0.3s ease; /* Transición suave para el hover */
 }
 
 button:hover {
@@ -70,30 +79,29 @@ button:hover {
 
 /* Estilo específico para el botón de Buscar */
 button[type="button"] {
-  background-color: #54a15b; /* Naranja */
+  background-color: #54a15b; /* Verde */
   color: white;
-  width: 20%;
+  width: 20%; /* Ancho fijo */
 }
 
 button[type="button"]:hover {
   background-color: #e68900;
 }
 
-/* 🔹 Alineación centrada de los botones */
-/* Alineación de los botones en el centro */
+/* Alineación de los botones */
 .button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Espacio entre los botones */
-    margin-top: 20px;
-  }
-  
-  /* Ajuste del ancho de los botones */
-  .register-button,
-  .update-button {
-    width: auto; /* Se ajusta al contenido */
-    padding: 10px 20px;
-  }
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Botones de Registro y Actualizar */
+.register-button,
+.update-button {
+  width: auto; /* Ajuste según el contenido */
+  padding: 10px 20px;
+}
 
 .register-button {
   background-color: #4CAF50; /* Verde para Registrar */
@@ -121,4 +129,66 @@ button[type="button"]:hover {
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
+}
+
+/* Estilo para la tabla de productos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f7f7f7; /* Filas alternas con fondo diferente */
+}
+
+h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column; /* En pantallas pequeñas, los campos se apilan */
+    align-items: flex-start;
+  }
+
+  label {
+    margin-bottom: 8px;
+    margin-right: 0;
+    flex-basis: auto;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  select {
+    width: 100%; /* Los campos ocupan todo el ancho disponible */
+  }
+
+  button[type="button"] {
+    width: 100%; /* El botón de buscar ocupa el 100% en pantallas pequeñas */
+  }
+
+  .button-group {
+    flex-direction: column; /* Los botones se apilan en pantallas pequeñas */
+    gap: 10px;
+  }
 }
