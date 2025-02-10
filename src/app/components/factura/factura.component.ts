@@ -189,17 +189,22 @@ export class FacturaComponent {
 
   crearFactura() {
     const idCliente = this.clienteForm.get('id_cliente')?.value;
-    console.log('id_cliente:', idCliente);  // Verifica si el id_cliente tiene un valor
+    const idUsuario = localStorage.getItem('id_usuario');
+    console.log('id_usuario desde localStorage:', idUsuario);  // Verifica si es correcto
+
   
-    if (!idCliente || this.detallesFactura.length === 0) {
-      alert('Debe seleccionar un cliente y agregar productos.');
+    console.log('id_cliente:', idCliente);  // Verifica si el id_cliente tiene un valor
+    console.log('id_usuario:', idUsuario);  // Verifica si el id_usuario tiene un valor
+    
+    if (!idCliente || !idUsuario || this.detallesFactura.length === 0) {
+      alert('Debe seleccionar un cliente, estar logueado y agregar productos.');
       console.log('Detalles de la factura:', this.detallesFactura);  // Verifica si los productos están en detallesFactura
       return;
     }
   
     const facturaData = {
       id_cliente: idCliente,
-      id_usuario: 1, // ID de usuario
+      id_usuario: idUsuario,  // Usar el id_usuario obtenido del almacenamiento local
       total: this.totalFactura
     };
   

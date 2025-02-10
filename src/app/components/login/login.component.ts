@@ -21,19 +21,20 @@ export class LoginComponent {
       alert("Por favor, completa todos los campos");
       return;
     }
-
+  
     this.auth.login(this.nombre_usuario, this.contrasenia)
       .subscribe({
         next: (response) => {
           console.log("Login exitoso:", response);
-
+  
           // Verificamos que la respuesta tenga nombre_usuario antes de proceder
           if (response && response.nombre_usuario) {
             console.log("Usuario autenticado:", response.nombre_usuario);
-
+  
             // Guardar los datos del usuario en localStorage
             localStorage.setItem('usuario', JSON.stringify(response));
-
+            localStorage.setItem('id_usuario', response.id_usuario);  // Aquí guardamos id_usuario
+  
             // Redirigir según el rol
             if (response.rol === "administrador") {
               this.router.navigate(['/proveedor']);
@@ -50,5 +51,5 @@ export class LoginComponent {
           console.error("Error de login:", error);
         },
       });
-  }
+  }  
 }
