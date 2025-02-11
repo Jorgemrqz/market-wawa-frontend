@@ -187,36 +187,51 @@ export class FacturaComponent {
     this.facturaForm.get('cantidad')?.reset(1);
   }  
 
-  crearFactura() {
-    const idCliente = this.clienteForm.get('id_cliente')?.value;
-    const idUsuario = localStorage.getItem('id_usuario');
-    console.log('id_usuario desde localStorage:', idUsuario);  // Verifica si es correcto
+// En tu componente Angular, al crear la factura:
 
+crearFactura() {
+  const idCliente = this.clienteForm.get('id_cliente')?.value;
+  const idUsuario = localStorage.getItem('id_usuario');
+  const email = this.clienteForm.get('email')?.value;
+  console.log('id_cliente:', idCliente);  // Verifica el id_cliente
+  console.log('id_usuario desde localStorage:', idUsuario);  // Verifica el id_usuario
   
-    console.log('id_cliente:', idCliente);  // Verifica si el id_cliente tiene un valor
-    console.log('id_usuario:', idUsuario);  // Verifica si el id_usuario tiene un valor
-    
-    if (!idCliente || !idUsuario || this.detallesFactura.length === 0) {
-      alert('Debe seleccionar un cliente, estar logueado y agregar productos.');
-      console.log('Detalles de la factura:', this.detallesFactura);  // Verifica si los productos están en detallesFactura
-      return;
+  if (!idCliente || !idUsuario || this.detallesFactura.length === 0) {
+    alert('Debe seleccionar un cliente, estar logueado y agregar productos.');
+    return;
+  }
+  const facturaData = {
+    id_cliente: idCliente,
+    id_usuario: idUsuario,  // Usar el id_usuario obtenido del almacenamiento local
+    total: this.totalFactura,
+    detallesFactura: this.detallesFactura,  // Los detalles de la factura
+    email:email
+  };
+
+  this.http.post('http://localhost:3000/api/facturas/crear-completa', facturaData).subscribe(
+    (response: any) => {
+      console.log('Factura creada exitosamente:', response);
+      this.idFactura = response.id_factura;
+      alert('Factura creada exitosamente');
+      
+      // Resetear los detalles de la factura
+      this.detallesFactura = [];
+      this.totalFactura = 0;
+      this.clienteForm.reset();
+      
+      console.log('Estado después de la creación de factura:');
+      console.log('detallesFactura:', this.detallesFactura);
+      console.log('totalFactura:', this.totalFactura);
+      console.log('clienteForm:', this.clienteForm.value);
+    },
+    (error) => {
+      console.error('Error al crear la factura:', error);
+      alert('Error al crear la factura');
     }
-  
-    const facturaData = {
-      id_cliente: idCliente,
-      id_usuario: idUsuario,  // Usar el id_usuario obtenido del almacenamiento local
-      total: this.totalFactura
-    };
-  
-    this.http.post('http://localhost:3000/api/facturas', facturaData).subscribe(
-      (factura: any) => {
-        this.idFactura = factura.id_factura;
-        this.guardarDetallesFactura();
-      },
-      () => alert('Error al crear la factura')
-    );
-  }  
-  
+  );
+}
+
+
   guardarDetallesFactura() {
     if (!this.idFactura) return;
 
